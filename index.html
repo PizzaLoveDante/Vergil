@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MRPET - Trang chính</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #e93d70;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #1cbae7;
+      padding: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .logo h1 {
+      margin: 0;
+      color: #f8fab4;
+      font-size: 28px;
+    }
+
+    /* Menu chính */
+    h2 { margin: 30px 0; font-size: 24px; }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .menu-item {
+      background-color: #1cbae7;
+      border: 2px solid black;
+      border-radius: 12px;
+      padding: 30px 20px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      color: #fff;
+    }
+    .menu-item:hover {
+      background-color: #f08787;
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo"><h1>MRPET</h1></div>
+  </div>
+
+  <h2>🐾 Chào mừng đến với MRPET 🐾</h2>
+  <div class="menu-grid">
+    <div class="menu-item" onclick="window.location.href='Dog.html'">🐶 Sản phẩm cho Chó</div>
+    <div class="menu-item" onclick="window.location.href='Cat.html'">🐱 Sản phẩm cho Mèo</div>
+    <div class="menu-item" onclick="window.location.href='Device.html'">⚙️ Thiết bị & Đồ dùng</div>
+    <div class="menu-item" onclick="window.location.href='Vet.html'">👩‍⚕️ Bác sĩ & Đặt lịch</div>
+  </div>
+</body>
+</html>
+

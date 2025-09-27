@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MRPET - Sản phẩm cho Mèo</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #e93d70;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1cbae7;
+      padding: 10px 20px;
+    }
+    .logo h1 { color: #f8fab4; margin: 0; font-size: 26px; }
+    .menu { display: flex; gap: 15px; }
+    .menu button {
+      border: 2px solid black;
+      background-color: #f8fab4;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .menu button:hover { background-color: #f08787; }
+
+    /* Grid sản phẩm */
+    h2 { padding: 20px; color: #f8fab4; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .product {
+      background-color: #1cbae7;
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      transition: 0.2s;
+    }
+    .product:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .title { font-weight: 600; margin-bottom: 8px; }
+    .price { margin-bottom: 10px; }
+    .button {
+      border: 1px solid black;
+      background-color: #f8fab4;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .button:hover { background-color: #f08787; }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo"><h1>MRPET</h1></div>
+    <div class="menu">
+      <button onclick="window.location.href='index.html'">🏠 Trang chính</button>
+      <button onclick="window.location.href='Dog.html'">Chó 🐶</button>
+      <button onclick="window.location.href='Vet.html'">Bác sĩ</button>
+    </div>
+  </div>
+
+  <h2>🐱 Sản phẩm cho Mèo</h2>
+  <div class="grid">
+    <div class="product">
+      <div class="title">Royal Canin cho mèo vị trứng cá muối</div>
+      <div class="price">695.00$</div>
+      <button class="button">ADD TO CART 🛒</button>
+    </div>
+    <div class="product">
+      <div class="title">Pate vị xoài</div>
+      <div class="price">299.99$</div>
+      <button class="button">ADD TO CART 🛒</button>
+    </div>
+    <div class="product">
+      <div class="title">Đồ chơi cho mèo hình Mustard</div>
+      <div class="price">67$</div>
+      <button class="button">ADD TO CART 🛒</button>
+    </div>
+  </div>
+</body>
+</html>
+

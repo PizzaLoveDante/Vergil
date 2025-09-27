@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MRPET - Đặt lịch bác sĩ</title>
+  <style>
+    :root {
+      --bg: #f6f8ff;
+      --card: #ffffff;
+      --text: #2d2d2d;
+      --muted: #6c6c6c;
+      --accent: #1cbae7;
+      --danger: #ff6b6b;
+      --radius: 14px;
+      --shadow: 0 6px 18px rgba(0,0,0,.1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Poppins", sans-serif; }
+    body { background: var(--bg); color: var(--text); }
+
+    /* ==== Navbar ==== */
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      background-color: var(--accent); padding: 12px 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      position: sticky; top: 0; z-index: 1000;
+    }
+    .logo h1 { margin: 0; font-size: 22px; color: #fff; }
+    .menu { display: flex; gap: 15px; }
+    .menu button {
+      border: none; background-color: #f8fab4;
+      padding: 8px 16px; border-radius: 6px;
+      font-weight: 600; cursor: pointer; transition: .25s ease;
+    }
+    .menu button:hover { background-color: #f08787; transform: scale(1.05); }
+
+    /* ==== Card ==== */
+    .card {
+      background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 20px; margin: 20px;
+    }
+    h2 { margin-bottom: 16px; font-size: 20px; color: var(--accent); }
+
+    /* ==== Danh sách bác sĩ ==== */
+    .catalog {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;
+    }
+    .doctor {
+      border-radius: var(--radius); padding: 16px; text-align: center;
+      transition: .2s ease; background: #fafbff; border: 1px solid #eee;
+    }
+    .doctor:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .doctor .name { font-weight: 600; margin-bottom: 6px; font-size: 16px; }
+    .doctor .price { color: var(--accent); font-weight: 500; margin-bottom: 10px; }
+    .doctor button {
+      background: var(--accent); color: white; border: none;
+      padding: 8px 14px; border-radius: 8px; cursor: pointer; transition: .2s ease;
+    }
+    .doctor button:hover { background: #148bb7; }
+
+    /* ==== Form ==== */
+    .row { display: flex; flex-direction: column; margin-bottom: 12px; gap: 6px; }
+    label { font-size: 14px; color: var(--muted); }
+    input {
+      padding: 10px 12px; border: 1px solid #ddd;
+      border-radius: 8px; outline: none; transition: border .2s;
+    }
+    input:focus { border-color: var(--accent); }
+    .actions { display: flex; gap: 10px; margin-top: 10px; }
+    .actions button {
+      flex: 1; padding: 10px 14px; border-radius: 8px; border: none;
+      cursor: pointer; font-weight: 600; transition: .2s;
+    }
+    .ghost { background: #eee; color: var(--text); }
+    .ghost:hover { background: #ddd; }
+    .primary { background: var(--accent); color: #fff; }
+    .primary:hover { background: #148bb7; }
+
+    @media(max-width:900px) {
+      .catalog { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo"><h1>MRPET</h1></div>
+    <div class="menu">
+      <button onclick="window.location.href='index.html'">🏠 Trang chính</button>
+    </div>
+  </div>
+
+  <!-- Danh sách bác sĩ -->
+  <section class="card">
+    <h2>👩‍⚕️ Danh sách bác sĩ</h2>
+    <div class="catalog">
+      <div class="doctor">
+        <div class="name">Bác sĩ: Nguyễn Duy</div>
+        <div class="price">50$</div>
+        <button onclick="chonBacSi('Nguyễn Duy')">Đặt lịch</button>
+      </div>
+      <div class="doctor">
+        <div class="name">Bác sĩ: Nguyễn Minh Triết</div>
+        <div class="price">70$</div>
+        <button onclick="chonBacSi('Nguyễn Minh Triết')">Đặt lịch</button>
+      </div>
+      <div class="doctor">
+        <div class="name">Bác sĩ: Võ Thanh Phương</div>
+        <div class="price">70$</div>
+        <button onclick="chonBacSi('Võ Thanh Phương')">Đặt lịch</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form đặt lịch -->
+  <section class="card">
+    <h2>📅 Lịch hẹn của bạn</h2>
+    <div class="row">
+      <label>Bác sĩ đã chọn</label>
+      <input id="selectedDoctor" type="text" readonly placeholder="Chưa chọn bác sĩ"/>
+    </div>
+    <div class="row">
+      <label>Ngày</label>
+      <input id="date" type="date" />
+    </div>
+    <div class="row">
+      <label>Giờ</label>
+      <input id="time" type="time" />
+    </div>
+    <div class="row">
+      <label>Thông tin khách hàng</label>
+      <input id="clientName" placeholder="Tên của bạn"/>
+      <input id="petName" placeholder="Tên thú cưng"/>
+    </div>
+    <div class="actions">
+      <button class="ghost" onclick="resetForm()">Huỷ</button>
+      <button class="primary" onclick="xacNhan()">Xác nhận ✅</button>
+    </div>
+  </section>
+
+  <script>
+    function chonBacSi(name) {
+      document.getElementById("selectedDoctor").value = name;
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    function resetForm() {
+      document.getElementById("selectedDoctor").value = "";
+      document.getElementById("date").value = "";
+      document.getElementById("time").value = "";
+      document.getElementById("clientName").value = "";
+      document.getElementById("petName").value = "";
+    }
+
+    function xacNhan() {
+      const doctor = document.getElementById("selectedDoctor").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const client = document.getElementById("clientName").value;
+      const pet = document.getElementById("petName").value;
+
+      if (!doctor || !date || !time || !client || !pet) {
+        alert("⚠️ Vui lòng điền đầy đủ thông tin!");
+        return;
+      }
+
+      alert(`✅ Lịch hẹn thành công!\n\nBác sĩ: ${doctor}\nNgày: ${date}\nGiờ: ${time}\nKhách hàng: ${client}\nThú cưng: ${pet}`);
+      resetForm();
+    }
+  </script>
+</body>
+</html>
+
+
+

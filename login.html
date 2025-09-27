@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1cbae7, #e93d70);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+      width: 320px;
+      animation: fadeIn 0.6s ease;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #e93d70;
+      outline: none;
+ box-shadow: 0 0 6px rgba(80, 159, 255, 0.364);
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .password-container input {
+      padding-right: 40px; /* chừa chỗ cho icon */
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      color: #888;
+      transition: color 0.3s ease;
+    }
+
+    .toggle-password:hover {
+      color: #e93d70;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #1cbae7;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #e93d70;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    a {
+      color: #ff5722;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <form id="loginForm">
+    <h2>Đăng nhập</h2>
+
+    <label for="login-username">Tên đăng nhập:</label>
+    <input type="text" id="login-username" required>
+
+    <label for="login-password">Mật khẩu:</label>
+    <div class="password-container">
+      <input type="password" id="login-password" required>
+      <span class="toggle-password" onclick="togglePassword()">👁</span>
+    </div>
+
+    <button type="submit">Đăng nhập</button>
+
+    <p>Bạn chưa có tài khoản? <a href="signup.html">Đăng ký ngay</a></p>
+  </form>
+
+  <script scr="LoginLS.js">
+    function togglePassword() {
+      const passwordField = document.getElementById("login-password");
+      passwordField.type = passwordField.type === "password" ? "text" : "password";
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
