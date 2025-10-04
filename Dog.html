@@ -4,96 +4,185 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MRPET - Sản phẩm cho Chó</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #e93d70;
-      font-family: "Poppins", sans-serif;
-    }
+  <link rel="stylesheet" href="first.css">
+ <style>
+  body {
+    margin: 0;
+    background-color: #e93d70;
+    font-family: "Poppins", sans-serif;
+  }
 
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #1cbae7;
-      padding: 10px 20px;
-    }
-    .logo h1 { color: #f8fab4; margin: 0; font-size: 26px; }
-    .menu { display: flex; gap: 15px; }
-    .menu button {
-      border: 2px solid black;
-      background-color: #f8fab4;
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-    .menu button:hover { background-color: #f08787; }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1cbae7;
+    padding: 10px 20px;
+  }
+  .logo h1 { color: #f8fab4; margin: 0; font-size: 26px; }
+  .logo img {
+      max-width: 60px;
+      height: auto;
+      border-radius: 5px;
+  }
+  .menu { display: flex; gap: 15px; }
 
-    /* Grid sản phẩm */
-    h2 { padding: 20px; color: #f8fab4; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .product {
-      background-color: #1cbae7;
-      border: 1px solid black;
-      border-radius: 10px;
-      padding: 15px;
-      text-align: center;
-      transition: 0.2s;
-    }
-    .product:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    .title { font-weight: 600; margin-bottom: 8px; }
-    .price { margin-bottom: 10px; }
-    .button {
-      border: 1px solid black;
-      background-color: #f8fab4;
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.2s;
-    }
-    .button:hover { background-color: #f08787; }
-  </style>
+  .menu button {
+    border: 2px solid black;
+    background-color: #f8fab4;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+  
+  .menu button:hover { background-color: #f08787; }
+
+  h2 { padding: 20px; color: #f8fab4; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  .product {
+    background-color: #1cbae7;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    transition: 0.2s;
+  }
+  .product:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  .title { font-weight: 600; margin-bottom: 8px; }
+  .price { margin-bottom: 10px; }
+  .button {
+    border: 1px solid black;
+    background-color: #f8fab4;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+  }
+  .button:hover { background-color: #f08787; }
+        @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .catalog {
+          grid-template-columns: 1fr;
+        }
+        .grid2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        }
+</style>
+
 </head>
 <body>
   <div class="navbar">
-    <div class="logo"><h1>MRPET</h1></div>
+    <div class="logo">
+      <img src="ChatGPTlogoForMe.png" alt="MrPet Logo" />
+      <h1>MRPET</h1></div>
     <div class="menu">
       <button onclick="window.location.href='index.html'">🏠 Trang chính</button>
       <button onclick="window.location.href='Cat.html'">Mèo 🐱</button>
       <button onclick="window.location.href='Vet.html'">Bác sĩ</button>
+              <div class="item"><button onclick="window.location.href='Device.html'">Thiết bị | Đồ dùng</button></div>
+      <button onclick="window.location.href='cart.html'">Giỏ hàng</button>
+      <button onclick="window.location.href='user.html'">Người dùng</button>
     </div>
   </div>
 
   <h2>🐶 Sản phẩm cho Chó</h2>
-  <div class="grid">
+    <div class="grid">
     <div class="product">
       <div class="title">Ganador 9000 pro</div>
       <div class="price">109.95$</div>
-      <button class="button">ADD TO CART 🛒</button>
+<div class="button" onclick="addToCart('Ganador 9000 pro', 109.95)">ADD TO CART 🛒</div>
     </div>
     <div class="product">
       <div class="title">Royal Canin cho chó vị abcxyz</div>
       <div class="price">22.3$</div>
-      <button class="button">ADD TO CART 🛒</button>
+      <div class="button" onclick="addToCart('Royal Canin cho mèo vị abcxyz ', 22.3)">ADD TO CART 🛒</div>
     </div>
     <div class="product">
       <div class="title">Đồ chơi skibidi toilet cho chó</div>
       <div class="price">15.99$</div>
-      <button class="button">ADD TO CART 🛒</button>
+   <div class="button" onclick="addToCart('Đồ chơi skibidi toilet cho chó ', 15.99)">ADD TO CART 🛒</div>
+    </div>
+
+    <div class="product">
+      <div class="title">Áo hoodie cho chó</div>
+      <div class="price">18.50$</div>
+      <div class="button" onclick="addToCart('Áo hoodie cho chó', 18.50)">ADD TO CART 🛒</div>
+    </div>
+    <div class="product">
+      <div class="title">Xương gặm vị bò nướng</div>
+      <div class="price">7.25$</div>
+      <div class="button" onclick="addToCart('Xương gặm vị bò nướng', 7.25)">ADD TO CART 🛒</div>
+    </div>
+    <div class="product">
+      <div class="title">Ổ nằm êm ái MrPet</div>
+      <div class="price">32.00$</div>
+      <div class="button" onclick="addToCart('Ổ nằm êm ái MrPet', 32.00)">ADD TO CART 🛒</div>
+    </div>
+    <div class="product">
+      <div class="title">Bát ăn inox cao cấp</div>
+      <div class="price">12.99$</div>
+      <div class="button" onclick="addToCart('Bát ăn inox cao cấp', 12.99)">ADD TO CART 🛒</div>
+    </div>
+    <div class="product">
+      <div class="title">Dây dắt phát sáng ban đêm</div>
+      <div class="price">14.45$</div>
+     <div class="button" onclick="addToCart('Dây dắt phát sáng ban đêm', 14.45)">ADD TO CART 🛒</div>
+    </div>
+    <div class="product">
+      <div class="title">Bình nước di động cho chó</div>
+      <div class="price">9.80$</div>
+    <div class="button" onclick="addToCart('Bình nước di động cho chó', 9.80)">ADD TO CART 🛒</div>
+    </div>
+    <div class="product">
+      <div class="title">Balo phi hành gia cho chó nhỏ</div>
+      <div class="price">40.90$</div>
+      <div class="button" onclick="addToCart('Balo phi hành gia cho chó nhỏ', 40.90)">ADD TO CART 🛒</div>
     </div>
   </div>
+<script src="script.js"></script>
+<script>
+  loadCart();
+</script>
+<h2>Máy tính MrPet</h2>
+
+  <div class="calculator">
+    <input id="expression" type="text" placeholder="Nhập phép tính...">
+    <button onclick="calculate()">Tính</button>
+    <button onclick="clearCalc()">Xóa</button>
+    <p>Kết quả: <span id="result"></span></p>
+  </div>
+  <script src="calculator.js"></script>
+
+  <footer style="background-color:#1cbae7; color:#222; padding:20px 0; text-align:center;">
+  <div style="max-width:1000px; margin:auto;">
+    <h2 style="margin:0; font-size:20px;">MR PET</h2>
+    <p style="margin:5px 0;">© 2025 MR PET. All rights reserved.</p>
+    <div style="margin:10px 0;">
+      <a href="#" style="color:#222; margin:0 10px; text-decoration:none;">Trang chủ</a>
+      <a href="#" style="color:#222; margin:0 10px; text-decoration:none;">Sản phẩm</a>
+      <a href="#" style="color:#222; margin:0 10px; text-decoration:none;">Liên hệ</a>
+    </div>
+    <div style="margin-top:10px;">
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="24" style="margin:0 5px;"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" width="24" style="margin:0 5px;"></a>
+      <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWuXTd8cP1CFrV-_QTwHWc6W7V_iEFMPCq6g&s" width="24" style="margin:0 5px;"></a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
 

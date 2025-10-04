@@ -1,74 +1,270 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MRPET - Trang chính</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #e93d70;
-      font-family: "Poppins", sans-serif;
-      text-align: center;
-      color: #fff;
-    }
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MRPET-MENU</title>
 
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #1cbae7;
-      padding: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    }
-    .logo h1 {
-      margin: 0;
-      color: #f8fab4;
-      font-size: 28px;
-    }
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        background-color: #e93d70;
+        font-family: "Poppins", Arial, sans-serif;
+      }
 
-    /* Menu chính */
-    h2 { margin: 30px 0; font-size: 24px; }
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    .menu-item {
-      background-color: #1cbae7;
-      border: 2px solid black;
-      border-radius: 12px;
-      padding: 30px 20px;
-      font-size: 18px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-      color: #fff;
-    }
-    .menu-item:hover {
-      background-color: #f08787;
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    }
-  </style>
-</head>
-<body>
-  <!-- Navbar -->
-  <div class="navbar">
-    <div class="logo"><h1>MRPET</h1></div>
+      .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #1cbae7;
+        height: 80px;
+        padding: 0 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo img {
+        max-width: 60px;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      .logo h1 {
+        color: #f8fab4;
+        font-size: 36px;
+        margin: 0;
+      }
+
+      .menu {
+        display: flex;
+        gap: 20px;
+      }
+
+      .item {
+        border: 2px solid black;
+        background-color: #f8fab4;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .item button {
+        background: none;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .item button:hover {
+        background-color: #f08787;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .product {
+        border: 1px solid black;
+        background-color: #1cbae7;
+        padding: 15px;
+        text-align: center;
+        border-radius: 10px;
+        transition: 0.2s ease;
+      }
+
+      .product:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .title {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .price {
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+
+      .button {
+        border: 1px solid black;
+        background-color: #f8fab4;
+        padding: 6px 12px;
+        font-size: 12px;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: 0.2s ease;
+        font-weight: 600;
+      }
+
+      .button:hover {
+        background-color: #f08787;
+        transform: scale(1.05);
+      }
+
+      .calculator {
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.calculator input {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.calculator button {
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #e93d70;
+  color: white;
+  transition: 0.2s;
+}
+
+.calculator button:hover {
+  background: #d62c60;
+}
+
+#result {
+  font-weight: bold;
+  color: #333;
+}
+
+      @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .catalog {
+          grid-template-columns: 1fr;
+        }
+        .grid2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="navbar">
+      <div class="logo">
+        <img src="ChatGPTlogoForMe.png" alt="MrPet Logo" />
+        <h1>MRPET</h1>
+      </div>
+
+      <div class="menu">
+        <div class="item"><button onclick="window.location.href='Dog.html'">Chó</button></div>
+        <div class="item"><button onclick="window.location.href='Cat.html'">Mèo</button></div>
+        <div class="item"><button onclick="window.location.href='Device.html'">Thiết bị | Đồ dùng</button></div>
+        <div class="item"><button onclick="window.location.href='Vet.html'">Bác sĩ</button></div>
+        <div class="item"><button onclick="window.location.href='cart.html'">🛒 Giỏ hàng</button></div>
+        <div class="item"><button onclick="window.location.href='user.html'">Người dùng</button></div>
+      </div>
+    </div>
+
+<div style="padding: 20px;">
+
+  <h2 style="color:white; margin-left:10px;">🐶 Sản phẩm cho Chó</h2>
+  <div class="grid">
+    <div class="product">
+      <div class="title">Ganador 9000 pro</div>
+      <div class="price">Price: $109.95</div>
+ <div class="button" onclick="addToCart('Ganador 9000 pro', 109.95)">ADD TO CART 🛒</div>
+    </div>
+    <div class="product">
+      <div class="title">Royal Canin pro cho chó vị abcxyz</div>
+      <div class="price">Price: $22.3</div>
+<div class="button" onclick="addToCart('Royal Canin pro cho chó vị abcxyz', 22.3)">ADD TO CART 🛒</div>
+    </div>
+    <div class="product">
+      <div class="title">Đồ chơi skibidi toilet cho chó</div>
+      <div class="price">Price: $15.99</div>
+       <div class="button" onclick="addToCart('Đồ chơi skibidi toilet cho chó', 15.99)">ADD TO CART 🛒</div>
+    </div>
   </div>
 
-  <h2>🐾 Chào mừng đến với MRPET 🐾</h2>
-  <div class="menu-grid">
-    <div class="menu-item" onclick="window.location.href='Dog.html'">🐶 Sản phẩm cho Chó</div>
-    <div class="menu-item" onclick="window.location.href='Cat.html'">🐱 Sản phẩm cho Mèo</div>
-    <div class="menu-item" onclick="window.location.href='Device.html'">⚙️ Thiết bị & Đồ dùng</div>
-    <div class="menu-item" onclick="window.location.href='Vet.html'">👩‍⚕️ Bác sĩ & Đặt lịch</div>
+  <h2 style="color:white; margin-left:10px; margin-top:30px;">🐱 Sản phẩm cho Mèo</h2>
+  <div class="grid">
+    <div class="product">
+      <div class="title">Hoodie sigma cho mèo</div>
+      <div class="price">Price: $55.99</div>
+       <div class="button" onclick="addToCart('Hoodie sigma cho mèo', 55.99)">ADD TO CART 🛒</div>
+    </div>
+    <div class="product">
+      <div class="title">Royal Canin cho mèo vị trứng cá muối</div>
+      <div class="price">Price: $695.00</div>
+      <div class="button" onclick="addToCart('Royal Canin cho mèo vị trứng cá muối ', 695.00)">ADD TO CART 🛒</div>
+    </div>
+    <div class="product">
+      <div class="title">Đồ chơi cho mèo hình Mustard</div>
+      <div class="price">Price: $67</div>
+     <div class="button" onclick="addToCart('Đồ chơi cho mèo hình Mustard', 67)">ADD TO CART 🛒</div>
+    </div>
   </div>
-</body>
+</div>
+      </div>
+    </div>
+<script src="script.js"></script>
+<script>
+  loadCart();
+</script>
+
+<h2>Máy tính MrPet</h2>
+
+  <div class="calculator">
+    <input id="expression" type="text" placeholder="Nhập phép tính...">
+    <button onclick="calculate()">Tính</button>
+    <button onclick="clearCalc()">Xóa</button>
+    <p>Kết quả: <span id="result"></span></p>
+  </div>
+  <script src="calculator.js"></script>
+
+ <footer style="background-color:#1cbae7; color:#222; padding:20px 0; text-align:center;">
+  <div style="max-width:1000px; margin:auto;">
+    <h2 style="margin:0; font-size:20px;">MR PET</h2>
+    <p style="margin:5px 0;">© 2025 MR PET. All rights reserved.</p>
+    <div style="margin:10px 0;">
+      <a href="#" style="color:#222; margin:0 10px; text-decoration:none;">Trang chủ</a>
+      <a href="#" style="color:#222; margin:0 10px; text-decoration:none;">Sản phẩm</a>
+      <a href="#" style="color:#222; margin:0 10px; text-decoration:none;">Liên hệ</a>
+    </div>
+    <div style="margin-top:10px;">
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="24" style="margin:0 5px;"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" width="24" style="margin:0 5px;"></a>
+      <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWuXTd8cP1CFrV-_QTwHWc6W7V_iEFMPCq6g&s" width="24" style="margin:0 5px;"></a>
+    </div>
+  </div>
+</footer>
+
+  </body>
 </html>
 

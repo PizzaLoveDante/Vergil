@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MRPET - Người dùng</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #e93d70;
+      font-family: "Poppins", sans-serif;
+      color: #222;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1cbae7;
+      padding: 10px 20px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { max-width: 50px; border-radius: 5px; }
+    .logo h1 { color: #f8fab4; margin: 0; font-size: 26px; }
+
+    .menu { display: flex; gap: 15px; }
+    .menu button {
+      border: 2px solid black;
+      background-color: #f8fab4;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+    .menu button:hover { background-color: #f08787; }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    h2 { color: #1cbae7; margin-bottom: 15px; }
+    .btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #1cbae7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    .btn:hover { background: #f08787; }
+    .row { margin-bottom: 12px; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    .pet-info {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="ChatGPTlogoForMe.png" alt="MrPet Logo" />
+      <h1>MRPET</h1>
+    </div>
+    <div class="menu">
+      <button onclick="window.location.href='index.html'">🏠 Trang chính</button>
+      <button onclick="window.location.href='Dog.html'">Chó 🐶</button>
+      <button onclick="window.location.href='Cat.html'">Mèo 🐱</button>
+      <button onclick="window.location.href='Device.html'">Thiết bị</button>
+      <button onclick="window.location.href='VetMeeting.html'">Bác sĩ</button>
+      <button onclick="window.location.href='cart.html'">🛒 Giỏ hàng</button>
+    </div>
+  </div>
+
+  <!-- Nội dung chính -->
+  <div class="container">
+    <h2>👤 Thông tin người dùng</h2>
+    <p><b>Tên đăng nhập:</b> <span id="username"></span></p>
+    <button class="btn" onclick="logout()">Đăng xuất</button>
+  </div>
+
+  <div class="container">
+    <h2>🐾 Thông tin thú cưng</h2>
+    <form id="petForm">
+      <div class="row">
+        <label for="petName">Tên thú cưng</label>
+        <input type="text" id="petName" required>
+      </div>
+      <div class="row">
+        <label for="petType">Loài</label>
+        <select id="petType" required>
+          <option value="Chó">Chó</option>
+          <option value="Mèo">Mèo</option>
+          <option value="Khác">Khác</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="petAge">Tuổi</label>
+        <input type="number" id="petAge" min="0" placeholder="Ví dụ: 3" required>
+      </div>
+      <div class="row">
+        <label for="petBreed">Giống</label>
+        <input type="text" id="petBreed" placeholder="Ví dụ: Husky, Anh lông ngắn...">
+      </div>
+      <button type="submit" class="btn">Lưu thông tin</button>
+    </form>
+
+    <div class="pet-info" id="petInfo" style="display:none;">
+      <h3>📋 Thông tin đã lưu:</h3>
+      <p><b>Tên:</b> <span id="showPetName"></span></p>
+      <p><b>Loài:</b> <span id="showPetType"></span></p>
+      <p><b>Tuổi:</b> <span id="showPetAge"></span></p>
+      <p><b>Giống:</b> <span id="showPetBreed"></span></p>
+    </div>
+  </div>
+
+  <script>
+    // Kiểm tra đăng nhập
+    const user = localStorage.getItem("username");
+    if (user) {
+      document.getElementById("username").textContent = user;
+    } else {
+      alert("Bạn chưa đăng nhập! Vui lòng đăng nhập trước.");
+      window.location.href = "login.html";
+    }
+
+    // Đăng xuất
+    function logout() {
+      localStorage.removeItem("username");
+      localStorage.removeItem("password");
+      alert("Bạn đã đăng xuất!");
+      window.location.href = "login.html";
+    }
+
+    // Xử lý form thú cưng
+    const petForm = document.getElementById("petForm");
+    const petInfoBox = document.getElementById("petInfo");
+
+    // Load dữ liệu cũ nếu có
+    const savedPet = JSON.parse(localStorage.getItem("petInfo"));
+    if (savedPet) {
+      displayPet(savedPet);
+    }
+
+    petForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const petData = {
+        name: document.getElementById("petName").value,
+        type: document.getElementById("petType").value,
+        age: document.getElementById("petAge").value,
+        breed: document.getElementById("petBreed").value
+      };
+      localStorage.setItem("petInfo", JSON.stringify(petData));
+      displayPet(petData);
+      alert("✅ Thông tin thú cưng đã được lưu!");
+    });
+
+    function displayPet(pet) {
+      petInfoBox.style.display = "block";
+      document.getElementById("showPetName").textContent = pet.name;
+      document.getElementById("showPetType").textContent = pet.type;
+      document.getElementById("showPetAge").textContent = pet.age;
+      document.getElementById("showPetBreed").textContent = pet.breed;
+    }
+  </script>
+</body>
+</html>
+
+

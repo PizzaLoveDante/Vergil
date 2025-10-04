@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giỏ hàng</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f8fab4;
+      margin: 0; padding: 0;
+    }
+    .navbar {
+      background: #1cbae7; padding: 12px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .navbar h1 { color: #fff; margin: 0; }
+    .container {
+      max-width: 800px; margin: 30px auto; background: white;
+      padding: 20px; border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    h2 { color: #1cbae7; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td {
+      padding: 10px; border-bottom: 1px solid #ddd; text-align: center;
+    }
+    button {
+      padding: 6px 12px; border: none; border-radius: 6px;
+      background: #1cbae7; color: white; cursor: pointer;
+    }
+    button:hover { background: #f08787; }
+            @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .catalog {
+          grid-template-columns: 1fr;
+        }
+        .grid2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h1>🛒 Giỏ hàng</h1>
+    <button onclick="window.location.href='index.html'">⬅️ Quay lại</button>
+  </div>
+
+  <div class="container">
+    <h2>Sản phẩm trong giỏ</h2>
+    <table id="cartTable">
+      <thead>
+        <tr>
+          <th>Tên sản phẩm</th>
+          <th>Giá</th>
+          <th>Số lượng</th>
+          <th>Tổng</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <h3 id="totalPrice">Tổng tiền: 0$</h3>
+    <button onclick="clearCart()">🗑 Xóa tất cả</button>
+  </div>
+
+<script>
+  function loadCart() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let tbody = document.querySelector("#cartTable tbody");
+    tbody.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      let row = document.createElement("tr");
+      let subtotal = item.price * item.quantity;
+      total += subtotal;
+
+      row.innerHTML = `
+        <td>${item.title}</td>
+        <td>${item.price}$</td>
+        <td>${item.quantity}</td>
+        <td>${subtotal.toFixed(2)}$</td>
+        <td><button onclick="removeItem(${index})">❌ Xóa</button></td>
+      `;
+      tbody.appendChild(row);
+    });
+
+    document.getElementById("totalPrice").textContent = "Tổng tiền: " + total.toFixed(2) + "$";
+  }
+
+  function removeItem(index) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
+
+  function clearCart() {
+    localStorage.removeItem("cart");
+    loadCart();
+  }
+
+  loadCart();
+</script>
+</body>
+</html>

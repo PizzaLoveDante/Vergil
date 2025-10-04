@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MRPET - Sản phẩm cho Mèo</title>
+    <link rel="stylesheet" href="first.css">
   <style>
     body {
       margin: 0;
@@ -11,7 +12,6 @@
       font-family: "Poppins", sans-serif;
     }
 
-    /* Navbar */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -32,7 +32,6 @@
     }
     .menu button:hover { background-color: #f08787; }
 
-    /* Grid sản phẩm */
     h2 { padding: 20px; color: #f8fab4; }
     .grid {
       display: grid;
@@ -64,15 +63,34 @@
       transition: 0.2s;
     }
     .button:hover { background-color: #f08787; }
+    .logo img {
+        max-width: 60px;
+        height: auto;
+        border-radius: 5px;}
+                @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .catalog {
+          grid-template-columns: 1fr;
+        }
+        .grid2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        }
   </style>
 </head>
 <body>
   <div class="navbar">
-    <div class="logo"><h1>MRPET</h1></div>
+    <div class="logo">
+      <img src="ChatGPTlogoForMe.png" alt="MrPet Logo" /><h1>MRPET</h1></div>
     <div class="menu">
       <button onclick="window.location.href='index.html'">🏠 Trang chính</button>
       <button onclick="window.location.href='Dog.html'">Chó 🐶</button>
+      <div class="item"><button onclick="window.location.href='Device.html'">Thiết bị | Đồ dùng</button></div>
       <button onclick="window.location.href='Vet.html'">Bác sĩ</button>
+      <button onclick="window.location.href='cart.html'">🛒 Giỏ hàng</button>
+            <div class="item"><button onclick="window.location.href='user.html'">Người dùng</button></div>
     </div>
   </div>
 
@@ -81,19 +99,49 @@
     <div class="product">
       <div class="title">Royal Canin cho mèo vị trứng cá muối</div>
       <div class="price">695.00$</div>
-      <button class="button">ADD TO CART 🛒</button>
+ <button class="button" onclick="addToCart('Royal Canin cho mèo vị trứng cá muối', 695.00)">ADD TO CART 🛒</button>
     </div>
     <div class="product">
       <div class="title">Pate vị xoài</div>
       <div class="price">299.99$</div>
-      <button class="button">ADD TO CART 🛒</button>
+<button class="button" onclick="addToCart('Pate vị xoài', 299.99)">ADD TO CART 🛒</button>
     </div>
     <div class="product">
       <div class="title">Đồ chơi cho mèo hình Mustard</div>
       <div class="price">67$</div>
-      <button class="button">ADD TO CART 🛒</button>
+<button class="button" onclick="addToCart('Đồ chơi cho mèo hình Mustard', 67)">ADD TO CART 🛒</button>
     </div>
   </div>
+<script src="script.js"></script>
+<script>
+  loadCart(); // khi mở trang thì hiển thị giỏ
+</script>
+<h2>Máy tính MrPet</h2>
+
+  <div class="calculator">
+    <input id="expression" type="text" placeholder="Nhập phép tính...">
+    <button onclick="calculate()">Tính</button>
+    <button onclick="clearCalc()">Xóa</button>
+    <p>Kết quả: <span id="result"></span></p>
+  </div>
+  <script src="calculator.js"></script>
+
+  <footer style="background-color:#1cbae7; color:#222; padding:20px 0; text-align:center;">
+  <div style="max-width:1000px; margin:auto;">
+    <h2 style="margin:0; font-size:20px;">MR PET</h2>
+    <p style="margin:5px 0;">© 2025 MR PET. All rights reserved.</p>
+    <div style="margin:10px 0;">
+      <a href="#" style="color:#222; margin:0 10px; text-decoration:none;">Trang chủ</a>
+      <a href="#" style="color:#222; margin:0 10px; text-decoration:none;">Sản phẩm</a>
+      <a href="#" style="color:#222; margin:0 10px; text-decoration:none;">Liên hệ</a>
+    </div>
+    <div style="margin-top:10px;">
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" width="24" style="margin:0 5px;"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" width="24" style="margin:0 5px;"></a>
+      <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWuXTd8cP1CFrV-_QTwHWc6W7V_iEFMPCq6g&s" width="24" style="margin:0 5px;"></a>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
 

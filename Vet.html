@@ -19,7 +19,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Poppins", sans-serif; }
     body { background: var(--bg); color: var(--text); }
 
-    /* ==== Navbar ==== */
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
       background-color: var(--accent); padding: 12px 20px;
@@ -27,6 +26,8 @@
       position: sticky; top: 0; z-index: 1000;
     }
     .logo h1 { margin: 0; font-size: 22px; color: #fff; }
+    .logo img { max-width: 60px; border-radius: 5px; }
+
     .menu { display: flex; gap: 15px; }
     .menu button {
       border: none; background-color: #f8fab4;
@@ -35,14 +36,12 @@
     }
     .menu button:hover { background-color: #f08787; transform: scale(1.05); }
 
-    /* ==== Card ==== */
     .card {
       background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
       padding: 20px; margin: 20px;
     }
     h2 { margin-bottom: 16px; font-size: 20px; color: var(--accent); }
 
-    /* ==== Danh sách bác sĩ ==== */
     .catalog {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;
     }
@@ -59,7 +58,6 @@
     }
     .doctor button:hover { background: #148bb7; }
 
-    /* ==== Form ==== */
     .row { display: flex; flex-direction: column; margin-bottom: 12px; gap: 6px; }
     label { font-size: 14px; color: var(--muted); }
     input {
@@ -77,22 +75,36 @@
     .primary { background: var(--accent); color: #fff; }
     .primary:hover { background: #148bb7; }
 
-    @media(max-width:900px) {
-      .catalog { grid-template-columns: 1fr; }
-    }
+        @media (max-width: 900px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .catalog {
+          grid-template-columns: 1fr;
+        }
+        .grid2 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
   <div class="navbar">
-    <div class="logo"><h1>MRPET</h1></div>
+    <div class="logo">
+      <img src="ChatGPTlogoForMe.png" alt="MrPet Logo" /><h1>MRPET</h1>
+    </div>
     <div class="menu">
       <button onclick="window.location.href='index.html'">🏠 Trang chính</button>
+      <button onclick="window.location.href='Dog.html'">🐶 Chó</button>
+      <button onclick="window.location.href='Cat.html'">🐱 Mèo</button>
+      <button onclick="window.location.href='Device.html'">⚙️ Thiết bị</button>
+      <button onclick="window.location.href='VetMeeting.html'">👩‍⚕️ Bác sĩ</button>
+      <button onclick="window.location.href='cart.html'">🛒 Giỏ hàng (<span id="cartCount">0</span>)</button>
+      <button onclick="window.location.href='user.html'">👤 Người dùng</button>
     </div>
   </div>
-
-  <!-- Danh sách bác sĩ -->
+  
   <section class="card">
     <h2>👩‍⚕️ Danh sách bác sĩ</h2>
     <div class="catalog">
@@ -140,38 +152,30 @@
     </div>
   </section>
 
-  <script>
-    function chonBacSi(name) {
-      document.getElementById("selectedDoctor").value = name;
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }
+ <script src="bs.js"></script>
+ <script>
+   // Tự động điền thông tin từ localStorage
+   document.addEventListener("DOMContentLoaded", () => {
+     const user = localStorage.getItem("username");
+     const pet = JSON.parse(localStorage.getItem("petInfo"));
 
-    function resetForm() {
-      document.getElementById("selectedDoctor").value = "";
-      document.getElementById("date").value = "";
-      document.getElementById("time").value = "";
-      document.getElementById("clientName").value = "";
-      document.getElementById("petName").value = "";
-    }
+     if (user) {
+       document.getElementById("clientName").value = user;
+     }
+     if (pet) {
+       document.getElementById("petName").value = pet.name;
+     }
 
-    function xacNhan() {
-      const doctor = document.getElementById("selectedDoctor").value;
-      const date = document.getElementById("date").value;
-      const time = document.getElementById("time").value;
-      const client = document.getElementById("clientName").value;
-      const pet = document.getElementById("petName").value;
-
-      if (!doctor || !date || !time || !client || !pet) {
-        alert("⚠️ Vui lòng điền đầy đủ thông tin!");
-        return;
-      }
-
-      alert(`✅ Lịch hẹn thành công!\n\nBác sĩ: ${doctor}\nNgày: ${date}\nGiờ: ${time}\nKhách hàng: ${client}\nThú cưng: ${pet}`);
-      resetForm();
-    }
-  </script>
+     // Cập nhật số lượng giỏ hàng
+     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+     let count = cart.reduce((sum, item) => sum + item.quantity, 0);
+     document.getElementById("cartCount").textContent = count;
+   });
+ </script>
 </body>
 </html>
+
+
 
 
 
